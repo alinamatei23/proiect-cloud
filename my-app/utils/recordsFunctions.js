@@ -117,5 +117,7 @@ export const deleteRecord = async (id) => {
     } catch (error) {
         console.error(error);
     }
+
+    
 }
 

@@ -24,7 +24,8 @@ const EditPage = () => {
 
   const handleSubmit = async (updatedData) => {
     try {
-      await updateRecord(id, updatedData);
+      // Trimitem obiectul complet, cu _id inclus
+      await updateRecord(updatedData);
       router.push("/");
     } catch (error) {
       console.error("Eroare la actualizare:", error);

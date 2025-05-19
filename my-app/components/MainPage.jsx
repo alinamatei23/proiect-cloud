@@ -36,56 +36,50 @@ const MainPage = () => {
   }, []);
 
   return (
-    <div className="p-4">
-      <div className="flex justify-end mb-4">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-10 px-4">
+      {/* Titlu */}
+      <h1 className="text-4xl font-bold text-center text-gray-800 dark:text-white mb-6">
+        Cărțile mele
+      </h1>
+
+      {/* Buton Adăugare */}
+      <div className="flex justify-center mb-8">
         <button
           onClick={() => router.push("/carti/add")}
-          className="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800"
+          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow transition"
         >
           + Adaugă carte
         </button>
       </div>
 
-      <div className="flex flex-wrap gap-4">
+      {/* Listă cărți */}
+      <div className="flex flex-col items-center space-y-6">
         {records.map((record) => (
           <div
-            className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
             key={record._id}
+            className="w-full max-w-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-md p-6"
           >
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-3">
               {record.title}
-            </h5>
-            <p className="mb-1 text-gray-700 dark:text-gray-300">
-              <strong>Autor:</strong> {record.author}
-            </p>
-            <p className="mb-1 text-gray-700 dark:text-gray-300">
-              <strong>Gen:</strong> {record.genre}
-            </p>
-            <p className="mb-1 text-gray-700 dark:text-gray-300">
-              <strong>Status:</strong> {record.read ? "Citită" : "De citit"}
-            </p>
-            <p className="mb-1 text-gray-700 dark:text-gray-300">
-              <strong>Rating:</strong> {record.rating}/5
-            </p>
-            <p className="mb-1 text-gray-700 dark:text-gray-300">
-              <strong>Adăugată la:</strong>{" "}
-              {new Date(record.dateAdded).toLocaleDateString()}
-            </p>
-            <p className="mb-3 text-gray-700 dark:text-gray-300">
-              <strong>Note:</strong> {record.notes}
-            </p>
-            <div className="flex justify-center">
+            </h2>
+            <div className="text-gray-700 dark:text-gray-300 space-y-1 mb-4">
+              <p><strong>Autor:</strong> {record.author}</p>
+              <p><strong>Gen:</strong> {record.genre}</p>
+              <p><strong>Status:</strong> {record.read ? "Citită" : "De citit"}</p>
+              <p><strong>Rating:</strong> {record.rating}/5</p>
+              <p><strong>Adăugată la:</strong> {new Date(record.dateAdded).toLocaleDateString()}</p>
+              <p><strong>Note:</strong> {record.notes}</p>
+            </div>
+            <div className="flex justify-end gap-3">
               <button
-                type="button"
-                className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
                 onClick={() => handleUpdateRecord(record._id)}
+                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition"
               >
                 Update
               </button>
               <button
-                type="button"
-                className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
                 onClick={() => handleDeleteRecord(record._id)}
+                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition"
               >
                 Delete
               </button>
